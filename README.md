@@ -111,7 +111,6 @@ github-trending-cli/
 │       ├── query.go        # Search query builder and date math
 │       └── query_test.go   # Query builder unit tests
 ├── main.go                 # Application entry point
-├── SPEC.md                 # Single source of truth specification
 ├── AGENTS.md               # Guidelines and rules for AI agents
 ├── CHANGELOG.md            # Version release history
 ├── CONTRIBUTING.md         # Contribution guidelines

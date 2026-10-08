@@ -49,4 +49,8 @@ Thumbs.db
 *.temp
 logs/
 *.log
+
+# Internal & Planning Files
 tasks/
+SPEC.md
+spec.md
