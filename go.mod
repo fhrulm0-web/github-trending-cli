@@ -1,4 +1,4 @@
-module github.com/fahrul/github-trending-cli
+module github.com/fhrulm0-web/github-trending-cli
 
 go 1.27.0
 

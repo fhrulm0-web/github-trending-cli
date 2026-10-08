@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/fahrul/github-trending-cli/internal/display"
-	"github.com/fahrul/github-trending-cli/internal/github"
+	"github.com/fhrulm0-web/github-trending-cli/internal/display"
+	"github.com/fhrulm0-web/github-trending-cli/internal/github"
 	"github.com/spf13/cobra"
 )
 

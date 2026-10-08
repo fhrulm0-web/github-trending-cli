@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/fahrul/github-trending-cli/internal/github"
+	"github.com/fhrulm0-web/github-trending-cli/internal/github"
 )
 
 func TestFormatNumber(t *testing.T) {

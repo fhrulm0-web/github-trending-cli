@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/fahrul/github-trending-cli/internal/github"
+	"github.com/fhrulm0-web/github-trending-cli/internal/github"
 )
 
 func newMockServer() *httptest.Server {
