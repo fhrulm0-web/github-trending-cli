@@ -1,0 +1,36 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout
+*.c       text
+*.h       text
+*.cpp     text
+*.hpp     text
+*.js      text
+*.jsx     text
+*.ts      text
+*.tsx     text
+*.json    text
+*.yaml    text
+*.yml     text
+*.md      text
+*.py      text
+*.sh      text eol=lf
+*.bash    text eol=lf
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+*.ps1     text
+
+# Binary files that should not be touched
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.svg     text
+*.woff    binary
+*.woff2   binary
+*.ttf     binary
+*.eot     binary
+*.pdf     binary
