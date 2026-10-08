@@ -1,93 +1,94 @@
 # AGENTS.md — github-trending-cli
 
-> Panduan dan aturan kerja untuk AI agent yang bekerja di repository ini.
-> Baca file ini sebelum melakukan perubahan apapun pada codebase.
+> Operating guidelines and development rules for AI agents in this repository.
+> Read this document before making any changes to the codebase.
 
 ---
 
-## 1. Konteks Project
+## 1. Project Context
 
-Ini adalah CLI tool berbasis **Go** untuk menampilkan trending GitHub repositories.
-Spesifikasi lengkap ada di [`SPEC.md`](SPEC.md). **SPEC.md adalah sumber kebenaran tunggal.**
+This project is a lightweight command-line interface (CLI) tool built in **Go** to display trending GitHub repositories.
+The comprehensive specification resides in the internal specification documentation.
 
 ---
 
-## 2. Aturan Utama (WAJIB DIIKUTI)
+## 2. Core Rules (STRICTLY ENFORCED)
 
-### DILARANG
-- **Jangan gunakan emoji atau icon** di dalam README, dokumentasi markdown, template issue/PR, pesan commit, maupun UI terminal. Jaga format tetap bersih dan formal tanpa simbol hiasan.
-- **Jangan tambah dependency baru** tanpa konfirmasi eksplisit dari user. Dependency yang diizinkan saat ini hanya:
+### FORBIDDEN
+- **Do NOT use emojis or decorative icons** in README, markdown documentation, issue/PR templates, commit messages, or terminal UI. Maintain a clean, professional, and formal style without decorative symbols.
+- **Do NOT add new dependencies** without explicit confirmation from the user. Currently authorized dependencies:
   - `github.com/spf13/cobra` (CLI parsing)
-  - Semua package dari Go standard library (`net/http`, `encoding/json`, `text/tabwriter`, `fmt`, `os`, `time`, dll.)
-- **Jangan implement fitur yang tidak ada di SPEC.md** (misal: caching, TUI, JSON output, autentikasi).
-- **Jangan hapus atau modifikasi** `SPEC.md`, `AGENTS.md`, `LICENSE`, `CONTRIBUTING.md` tanpa perintah eksplisit dari user.
-- **Jangan hardcode** nilai apapun yang bisa jadi konstanta (URL API, default values, batas limit, dsb.).
-- **Jangan commit langsung ke `main`**. Semua perubahan melalui branch terpisah.
+  - Packages from the Go standard library (`net/http`, `encoding/json`, `text/tabwriter`, `fmt`, `os`, `time`, etc.)
+- **Do NOT implement features not defined in the project scope** (e.g., local caching, TUI, JSON output, authentication).
+- **Do NOT delete or modify** `AGENTS.md`, `LICENSE`, or `CONTRIBUTING.md` without explicit user instruction.
+- **Do NOT hardcode** values that can be defined as constants (API URLs, default values, limits, etc.).
+- **Do NOT commit directly to `main`**. All changes must go through a dedicated feature branch.
+- **Do NOT write documentation in languages other than English**. All documentation, code comments, and commit messages must be in English.
 
-### PERHATIAN
-- Selalu cek apakah perubahan yang diminta sudah ada di acceptance criteria `SPEC.md` sebelum implementasi.
-- Jika ada ambiguitas atau kebutuhan yang tidak tercakup di spec, **tanyakan dulu ke user** sebelum mengasumsikan.
-- Pertahankan struktur folder seperti yang didefinisikan di `SPEC.md § 7`.
+### MANDATORY
+- Always verify that requested changes align with existing acceptance criteria before implementation.
+- If requirements are ambiguous, **ask the user for clarification** before making assumptions.
+- Maintain the modular directory structure defined in the architecture guidelines.
 
 ---
 
-## 3. Konvensi Kode Go
+## 3. Go Coding Conventions
 
 ### Formatting
-- Gunakan **`gofmt`** / **`goimports`** untuk semua file `.go`. Tidak ada negosiasi.
-- Indentasi: **tab** (bukan spasi) — standar Go.
-- Panjang baris: usahakan di bawah 100 karakter.
+- Use **`gofmt`** / **`goimports`** for all `.go` source files.
+- Indentation: **tabs** (standard Go convention, not spaces).
+- Line length: Keep under 100 characters where practical.
 
 ### Naming
-- Package names: **lowercase, singular** (misal: `github`, `display`, `cmd`).
-- Exported functions/types: **PascalCase** (misal: `FetchRepositories`, `Repository`).
-- Unexported: **camelCase** (misal: `buildQuery`, `parseResponse`).
-- Konstanta: **ALL_CAPS** atau **PascalCase** sesuai konvensi Go (`MaxLimit = 100`).
+- Package names: **lowercase, singular** (e.g., `github`, `display`, `cmd`).
+- Exported functions/types: **PascalCase** (e.g., `FetchRepositories`, `Repository`).
+- Unexported functions/types: **camelCase** (e.g., `buildSearchQuery`, `formatNumber`).
+- Constants: **PascalCase** or **ALL_CAPS** following Go conventions (e.g., `MaxLimit = 100`).
 
 ### Error Handling
-- **Selalu** tangani error di Go — jangan gunakan `_` untuk mengabaikan error kecuali ada alasan yang sangat jelas.
-- Error yang tampil ke user harus informatif (lihat tabel error di `SPEC.md § 6`).
-- Error dicetak ke `stderr` (`fmt.Fprintln(os.Stderr, ...)`), bukan `stdout`.
-- Gunakan `os.Exit(1)` untuk keluar dengan error.
+- **Always handle errors explicitly** — do not use blank identifiers (`_`) to ignore errors without justification.
+- User-facing error messages must be clear and actionable.
+- Output error messages to `stderr` (`fmt.Fprintln(os.Stderr, ...)`), not `stdout`.
+- Exit with status code `1` (`os.Exit(1)`) on fatal errors.
 
-### Struktur & Arsitektur
-- Pisahkan concern: **`cmd/`** hanya untuk CLI setup, **`internal/`** untuk business logic.
-- `main.go` hanya berisi pemanggilan `cmd.Execute()`.
-- Tidak boleh ada logic bisnis di dalam `cmd/root.go` — delegasikan ke `internal/`.
+### Architecture and Separation of Concerns
+- Maintain clean boundaries:
+  - **`cmd/`**: CLI setup, flags definition, and input validation only. No business logic.
+  - **`internal/`**: Core business logic, API communication, and formatting.
+  - **`main.go`**: Minimal entry point that delegates directly to `cmd.Execute()`.
 
 ---
 
-## 4. Alur Kerja yang Direkomendasikan
+## 4. Recommended Workflow
 
-Saat mengimplementasi task baru, ikuti urutan ini:
+Follow this sequence when implementing tasks:
 
-1. **Baca SPEC.md** — Pastikan task yang diminta ada di spec.
-2. **Buat branch** dengan nama deskriptif (misal: `feat/add-language-flag`).
-3. **Implementasi dengan TDD** (jika memungkinkan): tulis test gagal dulu, baru implementasi.
-4. **Jalankan** `go vet ./...` dan `go build ./...` — pastikan tidak ada error kompilasi.
-5. **Buat commit** dengan format Conventional Commits:
-   - `feat(cmd): add --language flag to root command`
+1. **Review requirements** — Confirm the task scope.
+2. **Create a feature branch** with a descriptive name (e.g., `feat/add-language-flag`).
+3. **Develop with tests** (TDD where applicable): write tests first, then implementation.
+4. **Verify quality**: Run `go vet ./...` and `go test ./...` — ensure zero warnings or failures.
+5. **Commit using Conventional Commits**:
+   - `feat(cmd): add language filter flag`
    - `fix(github): handle rate limit 403 response`
    - `docs(readme): update installation instructions`
-6. **Update CHANGELOG.md** jika fitur baru atau bug fix.
+6. **Update CHANGELOG.md** for new features or bug fixes.
 
 ---
 
-## 5. File yang Tidak Boleh Disentuh AI Tanpa Instruksi Eksplisit
+## 5. Protected Files
 
-| File | Alasan |
+| File | Rationale |
 |---|---|
-| `SPEC.md` | Sumber kebenaran project |
-| `AGENTS.md` | File ini sendiri |
-| `LICENSE` | Dokumen legal |
-| `go.mod` | Hanya diubah jika ada dependency baru yang disetujui |
+| `AGENTS.md` | Core agent governance file |
+| `LICENSE` | Legal documentation |
+| `go.mod` | Only modified when authorized dependencies change |
 
 ---
 
-## 6. Referensi Cepat
+## 6. Quick References
 
-- **GitHub Search API Docs:** https://docs.github.com/en/rest/search/search#search-repositories
-- **Cobra Docs:** https://cobra.dev/
-- **Go Standard Library:** https://pkg.go.dev/std
-- **Conventional Commits:** https://www.conventionalcommits.org/
-- **Effective Go:** https://go.dev/doc/effective_go
+- GitHub Search API Documentation: https://docs.github.com/en/rest/search/search#search-repositories
+- Cobra CLI Library: https://cobra.dev/
+- Go Standard Library: https://pkg.go.dev/std
+- Conventional Commits: https://www.conventionalcommits.org/
+- Effective Go: https://go.dev/doc/effective_go
