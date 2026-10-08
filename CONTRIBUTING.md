@@ -20,7 +20,7 @@ When creating an issue, please include:
 - A clear and descriptive title.
 - Steps to reproduce the behavior.
 - Expected vs. actual behavior.
-- Your OS, terminal, and runtime version (e.g. Node.js or Python).
+- Your OS, terminal, and Go version.
 
 ### Suggesting Enhancements
 

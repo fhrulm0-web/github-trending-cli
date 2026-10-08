@@ -1,29 +1,29 @@
-# ghtrend 🚀
+# ghtrend
 
 A fast, lightweight command-line interface (CLI) tool built in Go to discover trending GitHub repositories directly from your terminal.
 
-[![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat&logo=go)](https://go.dev/)
+[![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat)](https://go.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub release](https://img.shields.io/github/v/release/fhrulm0-web/github-trending-cli?include_prereleases&color=blue)](https://github.com/fhrulm0-web/github-trending-cli/releases)
 
 ---
 
-## ✨ Features
+## Features
 
-- 🌟 **Trending Repositories**: Discover top GitHub repositories sorted by star count.
-- ⏱️ **Flexible Time Ranges**: Filter by `day`, `week`, `month`, or `year`.
-- 🏷️ **Language Filter**: Filter repositories by programming language (e.g., `go`, `rust`, `python`, `typescript`).
-- 🔢 **Custom Limits**: Display anywhere between `1` and `100` repositories per query.
-- 📐 **Clean Terminal Output**: Formatted tabular view using Go standard library (`text/tabwriter`) with formatted numbers and description truncation.
-- ⚡ **Zero External Bloat**: Single lightweight binary with minimal dependencies (`cobra` + standard library).
+- **Trending Repositories**: Discover top GitHub repositories sorted by star count.
+- **Flexible Time Ranges**: Filter by `day`, `week`, `month`, or `year`.
+- **Language Filter**: Filter repositories by programming language (e.g., `go`, `rust`, `python`, `typescript`).
+- **Custom Limits**: Display anywhere between `1` and `100` repositories per query.
+- **Clean Terminal Output**: Formatted tabular view using Go standard library (`text/tabwriter`) with formatted numbers and description truncation.
+- **Zero External Bloat**: Single lightweight binary with minimal dependencies (`cobra` + standard library).
 
 ---
 
-## 📦 Installation
+## Installation
 
-### Option 1: Via `go install` (Recommended)
+### Option 1: Via go install (Recommended)
 
-Make sure you have [Go](https://go.dev/dl/) installed:
+Ensure you have [Go](https://go.dev/dl/) installed:
 
 ```bash
 go install github.com/fhrulm0-web/github-trending-cli@latest
@@ -47,7 +47,7 @@ go build -o ghtrend .
 
 ---
 
-## 📖 Usage
+## Usage
 
 ### Quick Examples
 
@@ -81,7 +81,7 @@ Showing 3 results | Source: GitHub Search API | Duration: month
 
 ---
 
-## 🚩 Command Flags
+## Command Flags
 
 | Flag | Shorthand | Type | Default | Description |
 |---|---|---|---|---|
@@ -93,7 +93,7 @@ Showing 3 results | Source: GitHub Search API | Duration: month
 
 ---
 
-## 🛠️ Project Structure
+## Project Structure
 
 ```text
 github-trending-cli/
@@ -110,9 +110,6 @@ github-trending-cli/
 │       ├── models.go       # API JSON response data models
 │       ├── query.go        # Search query builder and date math
 │       └── query_test.go   # Query builder unit tests
-├── tasks/
-│   ├── plan.md             # Implementation architecture plan
-│   └── todo.md             # Task breakdown and checklist
 ├── main.go                 # Application entry point
 ├── SPEC.md                 # Single source of truth specification
 ├── AGENTS.md               # Guidelines and rules for AI agents
@@ -124,7 +121,7 @@ github-trending-cli/
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 
 Run the test suite across all packages:
 
@@ -140,12 +137,12 @@ go vet ./...
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please check out [CONTRIBUTING.md](CONTRIBUTING.md) and feel free to submit issues or pull requests.
+Contributions are welcome. Please check out [CONTRIBUTING.md](CONTRIBUTING.md) and feel free to submit issues or pull requests.
 
 ---
 
-## 📝 License
+## License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.

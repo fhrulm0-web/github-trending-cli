@@ -13,14 +13,14 @@ Menemukan repository GitHub yang sedang trending memerlukan buka browser, masuk 
 
 ## 2. Goal & Non-Goals
 
-### ✅ Goals
+### Goals
 - Fetch dan tampilkan daftar repository yang paling banyak mendapat bintang (stars) dalam rentang waktu tertentu.
 - Filter berdasarkan rentang waktu: `day`, `week`, `month`, `year`.
 - Filter berdasarkan bahasa pemrograman (opsional).
 - Batasi jumlah hasil yang ditampilkan.
 - Output berupa tabel yang rapi dan mudah dibaca di terminal.
 
-### ❌ Non-Goals (Versi Ini)
+### Non-Goals (Versi Ini)
 - Tidak ada Interactive TUI (scroll, search, keyboard navigation).
 - Tidak ada local caching / persistent cache.
 - Tidak ada autentikasi GitHub (tidak perlu API token).

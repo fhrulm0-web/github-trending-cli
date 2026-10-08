@@ -14,7 +14,8 @@ Spesifikasi lengkap ada di [`SPEC.md`](SPEC.md). **SPEC.md adalah sumber kebenar
 
 ## 2. Aturan Utama (WAJIB DIIKUTI)
 
-### 🔴 DILARANG
+### DILARANG
+- **Jangan gunakan emoji atau icon** di dalam README, dokumentasi markdown, template issue/PR, pesan commit, maupun UI terminal. Jaga format tetap bersih dan formal tanpa simbol hiasan.
 - **Jangan tambah dependency baru** tanpa konfirmasi eksplisit dari user. Dependency yang diizinkan saat ini hanya:
   - `github.com/spf13/cobra` (CLI parsing)
   - Semua package dari Go standard library (`net/http`, `encoding/json`, `text/tabwriter`, `fmt`, `os`, `time`, dll.)
@@ -23,7 +24,7 @@ Spesifikasi lengkap ada di [`SPEC.md`](SPEC.md). **SPEC.md adalah sumber kebenar
 - **Jangan hardcode** nilai apapun yang bisa jadi konstanta (URL API, default values, batas limit, dsb.).
 - **Jangan commit langsung ke `main`**. Semua perubahan melalui branch terpisah.
 
-### 🟡 PERHATIAN
+### PERHATIAN
 - Selalu cek apakah perubahan yang diminta sudah ada di acceptance criteria `SPEC.md` sebelum implementasi.
 - Jika ada ambiguitas atau kebutuhan yang tidak tercakup di spec, **tanyakan dulu ke user** sebelum mengasumsikan.
 - Pertahankan struktur folder seperti yang didefinisikan di `SPEC.md § 7`.
